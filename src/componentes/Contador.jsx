@@ -1,44 +1,38 @@
 import React, { useState } from "react";
 import { Button, View } from "react-native";
-import Estilos from "../estilos"
+import Estilos from "../estilos";
 import { Text } from "react-native";
 
-export default ({inicial = 0, passo = 1}) => {
-    const [numero, setNumero] = useState(inicial);
-    const [resultadoImparPar, setResultadoImparPar] = useState("");
+export default ({ inicial = 0, passo = 1 }) => {
+  const [numero, setNumero] = useState(inicial);
+  const [resultadoParImpar, setResultadoParImpar] = useState("");
 
-    function inc(){
-        setNumero(numero + passo);
-    }
-    function dec(){
-        setNumero(numero - passo);
-    }
-    function numeroImparPar(valor){
-        if ( valor % 2 === 0){
-            setResultadoImparPar("Par");
-        } else {
-            setResultadoImparPar("Impar");
-        }
-    }
-    return (
-        <>
-        <Text style={Estilos.textDois}>
-            {numero}
-        </Text>
-        <View style={{flexDirection: "row"}}>
-            <Button
-                title="+"
-                onPress={inc}
-                
-            />
-            <Button
-                title="-"
-                onPress={dec}
-                
-            />
-        </View>
-        <Button title= "Verificar Impar ou Par" onPress={() => numeroImparPar(numero)} />
-        <Text style={Estilos.textDois}>{resultadoImparPar}</Text>
-        </>
-    )
-}
+  function inc() {
+    const novoNumero = numero + passo;
+    setNumero(novoNumero);
+    verificarParImpar(novoNumero);
+  }
+
+  function dec() {
+    const novoNumero = numero - passo;
+    setNumero(novoNumero);
+    verificarParImpar(novoNumero);
+  }
+
+  const verificarParImpar = (valor) => {
+    const resultado = valor % 2 === 0 ? "Par" : "Ímpar";
+    setResultadoParImpar(resultado);
+  };
+
+  return (
+    <>
+      <Text style={Estilos.textDois}>{numero}</Text>
+      <View style={{ flexDirection: "row" }}>
+        <Button title="+" onPress={inc} />
+        <Button title="-" onPress={dec} />
+      </View>
+      <Button title="Verificar Par/Ímpar" onPress={() => verificarParImpar(numero)} />
+      <Text style={Estilos.textDois}>{resultadoParImpar}</Text>
+    </>
+  );
+};

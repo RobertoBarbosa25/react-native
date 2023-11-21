@@ -4,16 +4,19 @@ import Contador from './src/componentes/Contador';
 import MaxMin, { NewMaxMin } from './src/componentes/MaxMin';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
+import Formulario from './src/componentes/Formulario';
 export default function App(){
     return (
         <View style={style.AppNew}>
-            <Contador inicial={100} passo={10}/>
-            <Contador/>
+            <Formulario/>
         </View> 
         
         
     );
-    <NewMaxMin x={10} y={5}/>
+    
+    
+   /* <Contador/>
+    <NewMaxMin x={10} y={5}/> */
      
     
 }
